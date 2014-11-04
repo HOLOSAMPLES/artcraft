@@ -41,7 +41,7 @@ var cylinder;
 var activeMaterialType = "wood";
 var mouse2d = new THREE.Vector3();
 var _hasReleasedMouse = true;
-var menuObjects = {};
+var menuObjects = {};                   
 var menuContiner;
 var activeMenuItemId;
 var isCrome
@@ -81,27 +81,27 @@ function mainInit() {
     $(window).keyup(function (event) {
 
         if (event.which == 32) {
-            event.preventDefault();
+           // event.preventDefault();
             _rotateSwitch = false;
         }
     });
 
     $("#container").mousedown(function (event) {
-        event.preventDefault();
+       // event.preventDefault();
         _mouseDown = true;
         lastChangedSegment = 0;
 
     })
 
     $("#container").mouseup(function (event) {
-        event.preventDefault();
+     //   event.preventDefault();
         _mouseDown = false;
         lastChangedSegment = null;
         _hasReleasedMouse = true;
     })
 
     $("#container").click(function (event) {
-        event.preventDefault();
+     //   event.preventDefault();
 
 
         if (activeMenuItemId)
@@ -799,7 +799,7 @@ function menuOut(id) {
 }
 
 function onDocumentMouseMove(event) {
-    event.preventDefault();
+  //  event.preventDefault();
     mouse2d.x = ((event.clientX - $("#container").offset().left) / SCREEN_WIDTH) * 2 - 1;
     mouse2d.y = -(((event.clientY) - $("#container").offset().top) / SCREEN_HEIGHT) * 2 + 1;
 }
