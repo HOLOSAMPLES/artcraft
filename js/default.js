@@ -142,7 +142,7 @@ function initEngine() {
     group = new THREE.Object3D();
 
     var dirLight = new THREE.DirectionalLight();
-    dirLight.intensity = 0.8;
+    dirLight.intensity = 1.0;
     dirLight.position.x = camera.position.x + 400;
     dirLight.position.y = camera.position.y + 200;
     dirLight.position.z = camera.position.z - 400;
@@ -158,7 +158,7 @@ function initEngine() {
 
 
     var dirLight = new THREE.DirectionalLight();
-    dirLight.intensity = 0.3;
+    dirLight.intensity = 0.8;
     dirLight.position.x = camera.position.x - 400;
     dirLight.position.y = camera.position.y + 2400;
     dirLight.position.z = camera.position.z - 1200;
@@ -166,7 +166,7 @@ function initEngine() {
     scene.add(dirLight);
 
     var dirLight = new THREE.DirectionalLight();
-    dirLight.intensity = 0.3;
+    dirLight.intensity = 0.8;
     dirLight.position.x = camera.position.x - 400;
     dirLight.position.y = camera.position.y - 2400;
     dirLight.position.z = camera.position.z - 200;
@@ -704,7 +704,7 @@ function render() {
     }
 
     group.rotation.x += _rotateSpeed;
-    renderer.setClearColor(new THREE.Color().setRGB(1.0, 1.0, 1.0));
+    renderer.setClearColor(new THREE.Color().setRGB(0.0, 0.0, 0.0));
     renderer.Leia_render(scene, camera, undefined, undefined, _holoScreenScale, _camFov, _messageFlag);//4
     TWEEN.update();
 }
