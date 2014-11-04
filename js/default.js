@@ -1,4 +1,4 @@
-﻿if (!Detector.webgl) {
+﻿﻿if (!Detector.webgl) {
     Detector.addGetWebGLMessage();
     document.getElementById('container').innerHTML = "";
 }
@@ -44,7 +44,7 @@ var _hasReleasedMouse = true;
 var menuObjects = {};                   
 var menuContiner;
 var activeMenuItemId;
-var isCrome
+var isCrome;
 
 //start engine and loading
 $(document).ready(function () {
@@ -56,8 +56,8 @@ function mainInit() {
     isCrome = navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
     var info = "";
 
-    if (!isCrome) info += "Select a material, hold SPACE to speed up and left-click to start working. Consider switching to Chrome to hear the sound-effects while turning."
-    else info = "Turn up the volume, select a material, hold SPACE to speed up and left-click to start working."
+    if (!isCrome) info += "Select a material, hold SPACE to speed up and left-click to start working. Consider switching to Chrome to hear the sound-effects while turning.";
+    else info = "Turn up the volume, select a material, hold SPACE to speed up and left-click to start working.";
 
     info += "<br>Created by Einar Öberg (@inear) with three.js.";
 
@@ -65,7 +65,7 @@ function mainInit() {
 
     properties = {
 
-    }
+    };
 
     LIBRARY.Shaders.loadedSignal.add(onShadersLoaded);
     initShaderLoading();
@@ -91,22 +91,22 @@ function mainInit() {
         _mouseDown = true;
         lastChangedSegment = 0;
 
-    })
+    });
 
     $("#container").mouseup(function (event) {
      //   event.preventDefault();
         _mouseDown = false;
         lastChangedSegment = null;
         _hasReleasedMouse = true;
-    })
+    });
 
     $("#container").click(function (event) {
      //   event.preventDefault();
 
 
         if (activeMenuItemId)
-            changeMaterial(activeMenuItemId)
-    })
+            changeMaterial(activeMenuItemId);
+    });
 }
 
 function onShadersLoaded() {
@@ -142,36 +142,36 @@ function initEngine() {
     group = new THREE.Object3D();
 
     var dirLight = new THREE.DirectionalLight();
-    dirLight.intensity = 0.8
+    dirLight.intensity = 0.8;
     dirLight.position.x = camera.position.x + 400;
     dirLight.position.y = camera.position.y + 200;
-    dirLight.position.z = camera.position.z - 400
+    dirLight.position.z = camera.position.z - 400;
 
-    dirLight.lookAt(scene.position)
+    dirLight.lookAt(scene.position);
 
     dirLight.shadowCameraLeft = -900;
     dirLight.shadowCameraRight = 700;
     dirLight.shadowCameraTop = 450;
     dirLight.shadowCameraBottom = -480;
     dirLight.castShadow = true;
-    scene.add(dirLight)
+    scene.add(dirLight);
 
 
     var dirLight = new THREE.DirectionalLight();
-    dirLight.intensity = 0.3
+    dirLight.intensity = 0.3;
     dirLight.position.x = camera.position.x - 400;
     dirLight.position.y = camera.position.y + 2400;
-    dirLight.position.z = camera.position.z - 1200
-    dirLight.lookAt(scene.position)
-    scene.add(dirLight)
+    dirLight.position.z = camera.position.z - 1200;
+    dirLight.lookAt(scene.position);
+    scene.add(dirLight);
 
     var dirLight = new THREE.DirectionalLight();
-    dirLight.intensity = 0.3
+    dirLight.intensity = 0.3;
     dirLight.position.x = camera.position.x - 400;
     dirLight.position.y = camera.position.y - 2400;
-    dirLight.position.z = camera.position.z - 200
-    dirLight.lookAt(scene.position)
-    scene.add(dirLight)
+    dirLight.position.z = camera.position.z - 200;
+    dirLight.lookAt(scene.position);
+    scene.add(dirLight);
 
     renderer = new LeiaWebGLRenderer({
         antialias: true,
@@ -208,7 +208,7 @@ function initMenu() {
     scene.add(menuContiner);
 
     var cubeGeo = new THREE.SphereGeometry(100, 100, 100);
-    cubeGeo.computeTangents()
+    cubeGeo.computeTangents();
 
     var metalMenu = menuObjects["metal"] = new THREE.Mesh(cubeGeo, MaterialLibrary.metalMenu);
     metalMenu.receiveShadow = false;
@@ -255,7 +255,7 @@ function initObjects() {
         vertexShader: LIBRARY.Shaders.Wood.vertex,
         fragmentShader: LIBRARY.Shaders.Wood.fragment,
         lights: true
-    }
+    };
 
     MaterialLibrary.wood = new THREE.ShaderMaterial(params);
     MaterialLibrary.woodMenu = new THREE.ShaderMaterial(params);
@@ -271,7 +271,7 @@ function initObjects() {
         vertexShader: LIBRARY.Shaders.Metal.vertex,
         fragmentShader: LIBRARY.Shaders.Metal.fragment,
         lights: true
-    }
+    };
 
     MaterialLibrary.metal = new THREE.ShaderMaterial(params);
     MaterialLibrary.metalMenu = new THREE.ShaderMaterial(params);
@@ -288,7 +288,7 @@ function initObjects() {
         vertexShader: LIBRARY.Shaders.Stone.vertex,
         fragmentShader: LIBRARY.Shaders.Stone.fragment,
         lights: true
-    }
+    };
 
     MaterialLibrary.stone = new THREE.ShaderMaterial(params);
     MaterialLibrary.stoneMenu = new THREE.ShaderMaterial(params);
@@ -296,7 +296,7 @@ function initObjects() {
 
     var chiselMaterial = new THREE.MeshPhongMaterial({ color: 0x888888, ambient: 0x000000, specular: 0xffffff, shininess: 5, metal: true });
 
-    cylinderMaterial = MaterialLibrary[activeMaterialType]
+    cylinderMaterial = MaterialLibrary[activeMaterialType];
 
 
     cylinder = new Cylinder(cylinderMaterial, 200);
@@ -309,7 +309,7 @@ function initObjects() {
     cylinder.geometry.computeFaceNormals();
     cylinder.geometry.computeVertexNormals();
 
-    group.position.x = cylinder.totalLinks * cylinder.linkDist * -.5
+    group.position.x = cylinder.totalLinks * cylinder.linkDist * -.5;
 
     segmentFactors = [];
     for (var i = 0; i < cylinder.totalLinks; i++) {
@@ -319,7 +319,7 @@ function initObjects() {
     group.add(cylinder);
 
     loader = new THREE.BinaryLoader(true);
-    loader.load("resource/chisel_1.js", function (geo) { chiselLoaded(geo) });
+    loader.load("resource/chisel_1.js", function (geo) { chiselLoaded(geo); });
 }
 
 function changeMaterial(type) {
@@ -333,9 +333,9 @@ function changeMaterial(type) {
         })
         .onComplete(function () {
 
-            cylinderMaterial = MaterialLibrary[type]
-            cylinder.material = cylinderMaterial
-            cylinder.position.x = -2000
+            cylinderMaterial = MaterialLibrary[type];
+            cylinder.material = cylinderMaterial;
+            cylinder.position.x = -2000;
             for (j = 0; j < cylinder.ring.length; j++) {
                 segmentFactors[j] = 1;
                 for (k = 0; k < cylinder.ring[j].length; k++) {
@@ -359,11 +359,11 @@ function changeMaterial(type) {
 function spawnParticle(spawnX) {
 
     if (activeMaterialType == "metal")
-        spawnCutting(spawnX)
+        spawnCutting(spawnX);
     else if (activeMaterialType == "wood")
-        spawnChips(spawnX)
+        spawnChips(spawnX);
     else if (activeMaterialType == "stone")
-        spawnDust(spawnX)
+        spawnDust(spawnX);
 }
 
 //called from object pool
@@ -381,7 +381,7 @@ function createChips() {
 
 function spawnChips(spawnX) {
 
-    spawnDelay++
+    spawnDelay++;
 
     if (spawnDelay < 3) {
         return;
@@ -402,7 +402,7 @@ function spawnChips(spawnX) {
     chipsMesh.rotation = new THREE.Euler(Math.PI * .5, Math.PI, Math.random() * Math.PI, THREE.Euler.DefaultOrder);
 
     chipsMesh.position = intersectionPoint.clone();
-    chipsMesh.position.x = spawnX
+    chipsMesh.position.x = spawnX;
     scene.add(chipsMesh);
 }
 
@@ -442,7 +442,7 @@ function createCutting() {
 var spawnDelay = 0;
 function spawnCutting(spawnX) {
 
-    spawnDelay++
+    spawnDelay++;
 
     if (spawnDelay < 15) {
         return;
@@ -517,7 +517,7 @@ function spawnDust(spawnX) {
     dustSprite.position = intersectionPoint.clone();
     dustSprite.scale.x = 3+ Math.random()*1;
     dustSprite.scale.y = 3+ Math.random()*1;
-    dustSprite.scale.z = 3
+    dustSprite.scale.z = 3;
     dustSprite.opacity = 1;
     dustSprite.rotationVelocity = new THREE.Vector3(Math.random()*0.5,Math.random()*0.0,Math.random()*0.0);
     dustSprite.rotation = new THREE.Euler(Math.PI * .5, -Math.PI * Math.random(), Math.PI * .5, THREE.Euler.DefaultOrder);
@@ -538,7 +538,7 @@ function updateDusts() {
 
         dust.opacity -= 0.02;
 
-        dust.scale.x = dust.scale.y = dust.scale.z += 2
+        dust.scale.x = dust.scale.y = dust.scale.z += 2;
         dust.position.add(dust.velocity);
 
         dust.rotation.x += dust.rotationVelocity.x;
@@ -568,7 +568,7 @@ function chiselLoaded(geo) {
     scene.add(chisel);
 
     loader = new THREE.BinaryLoader(true);
-    loader.load("resource/chips.js", function (geo) { chipsLoaded(geo) });
+    loader.load("resource/chips.js", function (geo) { chipsLoaded(geo); });
 
 }
 
@@ -577,7 +577,7 @@ function chipsLoaded(geo) {
     chipsGeometry = geo;
 
     loader = new THREE.BinaryLoader(true);
-    loader.load("resource/metal.js", function (geo) { metalLoaded(geo) });
+    loader.load("resource/metal.js", function (geo) { metalLoaded(geo); });
 }
 
 function metalLoaded(geo) {
@@ -595,7 +595,7 @@ function initStartState() {
 //game loop
 function animate() {
     requestAnimationFrame(animate);
-    render()
+    render();
 }
 
 var time = 0;
@@ -620,14 +620,14 @@ function render() {
     else if (!_mouseDown) {
         chisel.position.x += (0 - chisel.position.x) / 3;
         chisel.position.z += (100 - chisel.position.z) / 3;
-        chisel.lookAt(new THREE.Vector3(chisel.position.x, 0, 0))
+        chisel.lookAt(new THREE.Vector3(chisel.position.x, 0, 0));
     }
 
     var pX, pY, pZ;
     var j;
     var newValue, currentSegment, segmentSteps;
     var cylinderWidth = cylinder.totalLinks * cylinder.linkDist;
-    var pressure = 0.01
+    var pressure = 0.01;
     var relativeX;
 
     if (_mouseDown && _rotateSpeed > 0.1 && intersectionPoint != null) {
@@ -637,7 +637,7 @@ function render() {
         currentSegment = Math.floor(relativeX * segmentFactors.length);
 
         if (_hasReleasedMouse) {
-            lastChangedSegment = currentSegment
+            lastChangedSegment = currentSegment;
             _hasReleasedMouse = false;
         }
 
@@ -671,7 +671,7 @@ function render() {
         }
         else {
 
-            changedSegment = currentSegment
+            changedSegment = currentSegment;
 
             if (changedSegment > 0 && changedSegment < cylinder.totalLinks) {
                 if (segmentFactors[changedSegment] > 0.2) {
@@ -716,7 +716,7 @@ function setRing(changedSegment, pressure) {
     var newValue = segmentFactors[changedSegment];
     if (newValue < pressure) return;
 
-    pressure *= newValue
+    pressure *= newValue;
 
 
     newValue -= pressure;
@@ -743,7 +743,7 @@ function checkCollisions() {
     var c = r.intersectObject(cylinder);
 
     if (c.length > 0 && c[0].point) {
-        intersectionPoint = c[0].point
+        intersectionPoint = c[0].point;
         intersectNormal = c[0].face.normal;
     }
     else {
@@ -761,11 +761,11 @@ function checkCollisions() {
 
         if (c.length > 0 && c[0].point) {
             $("body").css("cursor", "pointer");
-            menuOver(id)
+            menuOver(id);
             foundMenuItem = true;
         }
         else {
-            menuOut(id)
+            menuOut(id);
         }
     }
 
@@ -773,16 +773,16 @@ function checkCollisions() {
         $("body").css("cursor", "pointer");
     else {
         $("body").css("cursor", "default");
-        activeMenuItemId = null
+        activeMenuItemId = null;
     }
 
 }
 
 function menuOver(id) {
 
-    activeMenuItemId = id
+    activeMenuItemId = id;
 
-    menuObjects[id].position.z = 20
+    menuObjects[id].position.z = 20;
 
     var tween = new TWEEN.Tween(menuObjects[id].position)
         .to({ z: 20 }, 500)
@@ -795,7 +795,7 @@ function menuOver(id) {
 
 function menuOut(id) {
 
-    menuObjects[id].position.z = 0
+    menuObjects[id].position.z = 0;
 }
 
 function onDocumentMouseMove(event) {
@@ -813,15 +813,15 @@ function onWindowResize() {
     renderer.Leia_setSize(SCREEN_WIDTH, SCREEN_HEIGHT);//5
 
     camera.aspect = SCREEN_WIDTH / SCREEN_HEIGHT;
-    camera.updateProjectionMatrix()
+    camera.updateProjectionMatrix();
 
-    var leftPos = window.innerWidth * .5 - SCREEN_WIDTH * .5
-    var topPos = window.innerHeight * .5 - SCREEN_HEIGHT * .5
+    var leftPos = window.innerWidth * .5 - SCREEN_WIDTH * .5;
+    var topPos = window.innerHeight * .5 - SCREEN_HEIGHT * .5;
 
     if (leftPos < 200) leftPos = 200;
     if (topPos < -100) topPos = -100;
 
-    $("#container").css({ left: 0, top: 0 })
+    $("#container").css({ left: 0, top: 0 });
 }
 
 function setMode(mode) {
@@ -872,4 +872,4 @@ document.onkeydown = function (event) {
         document.body.style.marginLeft = data + "px";
     }
 
-}
+};
