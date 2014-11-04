@@ -1,35 +1,59 @@
 <!DOCTYPE html>
-    <html manifest="/cache.appcache">
-    <head>
-    	<script src="https://holodevuserresource.s3.amazonaws.com/three.min.js"></script>
-      <script src="https://holodevuserresource.s3.amazonaws.com/swizzle.js"></script>
-    	<!--add library above-->
-      <meta charset="utf-8">
-      <title>holodev</title>
-      <script>  
-            var _renderMode = 2; 
-		   var _nShaderMode = 0;
-		   var _messageFlag = 1;
-   		   var _camFov = 50; 
-           var _camPosition = new THREE.Vector3(0, 0, 50);
-           var _tarPosition = new THREE.Vector3(0, 0, 0);
-           var _holoScreenScale = 0.4; 
-        </script>  
-        <style type="text/css">
+   <head>
+		<!-- Shaders -->
+		<script data-src="js/wood_vertex.js?cache=2" data-name="Wood" type="x-shader/x-vertex"></script>
+		<script data-src="js/wood_fragment.js?cache=2" data-name="Wood" type="x-shader/x-fragment"></script>
+
+		<script data-src="js/metal_vertex.js?cache=2" data-name="Metal" type="x-shader/x-vertex"></script>
+		<script data-src="js/metal_fragment.js?cache=2" data-name="Metal" type="x-shader/x-fragment"></script>
+
+		<script data-src="js/stone_vertex.js?cache=2" data-name="Stone" type="x-shader/x-vertex"></script>
+		<script data-src="js/stone_fragment.js?cache=2" data-name="Stone" type="x-shader/x-fragment"></script>
+
+		<!-- End Shaders -->
+
+		<script type="text/javascript" src="js/three.min.js"></script>
+		<script type="text/javascript" src="js/swizzle.js"></script>
+		<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="js/Detector.js"></script>
+		<script type="text/javascript" src="js/signals.js"></script>
+		<script type="text/javascript" src="js/Library.js"></script>
+		<script type="text/javascript" src="js/Tween.js"></script>
+		<script type="text/javascript" src="js/BinaryLoader.js"></script>    
+		<script type="text/javascript" src="js/Cylinder.js"></script>
+		<script type="text/javascript" src="js/RequestAnimationFrame.js"></script>
+		<script type="text/javascript" src="js/ObjectPool.js"></script>
+   	<!--add library above-->
+     <meta charset="utf-8">
+     <title>holodev</title>
+     <script>  
+        var _renderMode = 3 ; 
+		var _nShaderMode = 0;
+		var _messageFlag = 0;
+
+		var _camPosition = new THREE.Vector3(0, 2, 1000);
+        var _camFov = 50;
+        var _tarPosition = new THREE.Vector3(0, 0, 0);
+        var _holoScreenScale = 0.8;
+        
+       </script>  
+       <style type="text/css">
           body {
               overflow:hidden;
           }
-         </style>
-   </head>
-    
+        </style>
+  </head>
+   
+   <body>
+   <div id="yaw" style="display: none;">0</div>
+   <div id="pitch" style="display: none;">0</div>
+   <div id="roll" style="display: none;">0</div>
+   </body>
     <body>
-    <div id="yaw" style="display: none;">0</div>
-    <div id="pitch" style="display: none;">0</div>
-    <div id="roll" style="display: none;">0</div>
+    <div id="container"></div>
     </body>
-    <script>
-       <script>
-       var ShiftX = 0;
+   <script>
+      var ShiftX = 0;
        var ShiftY = 0;
        var cookieExpireDate;
       function listener(event){ 
