@@ -705,7 +705,7 @@ function render() {
 
     group.rotation.x += _rotateSpeed;
     renderer.setClearColor(new THREE.Color().setRGB(0.0, 0.0, 0.0));
-    renderer.Leia_render(scene, camera, undefined, undefined, _holoScreenScale, _camFov, _messageFlag);//4
+    renderer.Leia_render(scene, camera, undefined, undefined, _holoScreenSize, _camFov, _messageFlag);//4
     TWEEN.update();
 }
 
